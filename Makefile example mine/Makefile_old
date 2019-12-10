@@ -1,0 +1,13 @@
+all: queue
+
+queue: main.o queue_module.o 
+	gcc main.o queue_module.o -o queue -lpthread
+
+main.o: main.c
+	gcc -I . -c main.c
+
+queue_module.o: queue_module.c
+	gcc -I . -c queue_module.c
+
+clean: 
+	rm *rf *o queue

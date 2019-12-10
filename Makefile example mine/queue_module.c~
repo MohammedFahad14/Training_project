@@ -1,0 +1,45 @@
+#include "queue_module.h"
+#define size 20
+pthread_mutex_t lock;
+int rear=0,front=-1,queue[20],counter=0;
+void *push(void *argf)
+	{
+
+while(1)
+{ sleep(1);
+	pthread_mutex_lock(&lock);
+	if(front == -1)
+		{ front++;
+	}
+	if(rear == size-1)
+		{ printf(" Queue is full");
+		pthread_exit(NULL);
+}	
+else
+		{
+			queue[++rear]=counter++;
+}
+	pthread_mutex_unlock(&lock);
+
+}
+
+}
+
+void *pop(void *argf)
+{
+
+while(1)
+{
+	pthread_mutex_lock(&lock);
+
+	if(front<rear)
+		printf("%d \n",queue[++front]);
+	/*else
+		{ 
+			printf("Queue is empty \n");
+			pthread_exit(NULL); } */
+	pthread_mutex_unlock(&lock);
+}
+
+}
+
